@@ -45,8 +45,8 @@ function App() {
 
       {/* Sección de Anexos */}
       <div className="anexos">
-        <h2 class="decreto">Decreto Reglamentario 351/79</h2>
-        <p class="decreto">
+        <h2 className="decreto">Decreto Reglamentario 351/79</h2>
+        <p className="decreto">
           El presente Decreto Reglamentario tiene por objeto establecer las normas
           mínimas de seguridad y salud en los lugares de trabajo, a fin de prevenir
           accidentes y enfermedades laborales.
