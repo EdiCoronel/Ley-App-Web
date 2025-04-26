@@ -158,6 +158,11 @@ li:hover {
   color: #0056b3; /* Azul profesional en hover */
 }
 
+.modal-content p {
+  line-height: 1.8;
+  text-align: justify; /* Justificado para mejor lectura */
+}
+
 p.decreto {
   line-height: 1.5;
   text-align: center;
