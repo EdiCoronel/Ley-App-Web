@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
+import Footer from './componentes/footer'; // Importar el componente Footer
+
 
 function App() {
   const [lawData, setLawData] = useState(null);
@@ -174,6 +176,7 @@ function App() {
           </div>
         </div>
       )}
+      <Footer />
     </div>
   );
 }
