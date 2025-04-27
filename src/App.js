@@ -12,7 +12,7 @@ function App() {
 
   // Cargar los datos de la ley desde el backend
   useEffect(() => {
-    fetch('http://localhost:5000/api/ley')
+    fetch('https://web-app-qr3w.onrender.com/api/ley')
       .then((response) => response.json())
       .then((data) => setLawData(data))
       .catch((error) => console.error('Error al cargar los datos:', error));
