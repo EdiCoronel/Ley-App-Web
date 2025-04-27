@@ -1,70 +1,124 @@
-# Getting Started with Create React App
+# Proyecto de Legislación Laboral - ISPC (Web App)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Este proyecto es una evolución del sistema original de consulta de legislación laboral, adaptado a una **App Web moderna** utilizando tecnologías actuales como **React** para el frontend y un backend básico desarrollado con **Node.js** y **Express**. 
 
-## Available Scripts
+El objetivo principal es proporcionar una experiencia más interactiva, escalable y eficiente para la consulta de normativas laborales, específicamente el **Decreto Nº 351/79** y sus anexos.
 
-In the project directory, you can run:
+---
 
-### `npm start`
+## Objetivo
+El propósito de este proyecto es:
+- Implementar una **interfaz interactiva y moderna** para la consulta de normativas laborales.
+- Migrar desde una estructura basada en archivos HTML, CSS y JavaScript a un sistema más robusto utilizando **React** y **Express**.
+- Proporcionar una experiencia de usuario optimizada, con una navegación fluida y accesible desde múltiples dispositivos.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Características
+### Cambios principales con respecto a la versión anterior
+- **Frontend en React**:
+  - Utilización de **Componentes React** para dividir la aplicación en bloques reutilizables.
+  - Navegación dinámica con **React Router**, eliminando la necesidad de recargar la página.
+  - Diseño modular para facilitar el mantenimiento y futuras expansiones.
+- **Backend en Node.js y Express**:
+  - Implementación de un **servidor básico** que expone una API REST.
+  - Proporciona los datos del decreto y anexos desde un archivo JSON estructurado.
+  - Ofrece rutas específicas para consultar información de títulos, capítulos, artículos y anexos.
+- **Interfaz moderna y responsiva**:
+  - Uso de **CSS moderno** y librerías como **Bootstrap** o **Material-UI** para un diseño atractivo.
+  - Optimización para dispositivos móviles y de escritorio.
+- **Migración de datos**:
+  - Los datos previamente almacenados en archivos JavaScript (como `ley.js`) fueron migrados a un archivo JSON para facilitar su manipulación y consulta desde el backend.
 
-### `npm test`
+---
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Tecnologías utilizadas
+### Frontend
+- **React**: Framework para la creación de interfaces de usuario.
+- **React Router**: Manejo de rutas dinámicas para una navegación fluida.
+- **CSS3 / Material-UI**: Estilos visuales modernos y componentes preconstruidos.
 
-### `npm run build`
+### Backend
+- **Node.js**: Entorno de ejecución para JavaScript en el servidor.
+- **Express**: Framework para construir la API REST.
+- **JSON**: Formato de datos estructurados para almacenar la información del decreto y anexos.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+---
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Estructura del proyecto
+### Frontend
+- `src/components`: Contiene los componentes reutilizables de React.
+- `src/pages`: Define las páginas principales como Inicio, Anexos, y Artículos.
+- `src/App.js`: Punto de entrada principal de la aplicación React.
+- `src/styles`: Archivos CSS específicos para el diseño y personalización.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Backend
+- `server.js`: Archivo principal que configura el servidor Express y las rutas.
+- `data/ley.json`: Archivo JSON con la estructura completa del decreto y anexos.
+- `routes/legislationRoutes.js`: Define las rutas para acceder a los datos del decreto.
 
-### `npm run eject`
+---
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Cómo usar
+### Requisitos previos
+- Tener instalado **Node.js** y **npm**.
+- Un navegador web moderno.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Instalación
+1. Clona este repositorio en tu máquina local:
+   ```bash
+   git clone https://github.com/EdiCoronel/Ley-App-Web.git
+   ```
+2. Instala las dependencias del servidor backend:
+   ```bash
+   cd Ley-App-Web/backend
+   npm install
+   ```
+3. Instala las dependencias del frontend:
+   ```bash
+   cd ../frontend
+   npm install
+   ```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Ejecución
+1. Inicia el servidor backend:
+   ```bash
+   cd Ley-App-Web/backend
+   npm start
+   ```
+2. Inicia la aplicación frontend:
+   ```bash
+   cd ../frontend
+   npm start
+   ```
+3. Abre tu navegador y accede a `http://localhost:3000`.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+---
 
-## Learn More
+## Funcionalidades destacadas
+### Navegación interactiva
+- Explora fácilmente la estructura del decreto por títulos, capítulos y artículos.
+- Amplía o colapsa capítulos y anexos con un clic.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Consulta de datos en tiempo real
+- El backend expone una API REST que permite consultar información específica de la ley y anexos.
+- La información se presenta en modales o vistas dedicadas en el frontend.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### ANEXO I
+El **ANEXO I** incluye información específica sobre la **Reglamentación de la Ley Nº 19.587, aprobada por Decreto Nº 351/79**. Este anexo es completamente navegable:
+- Se puede expandir y colapsar al hacer clic.
+- Contiene una descripción detallada del propósito del anexo.
 
-### Code Splitting
+## Colaborador
+- **Ediberto Coronel** (Desarrollador y estudiante de la Tecnicatura de Higiene y Seguridad Laboral)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+---
 
-### Analyzing the Bundle Size
+## Licencia
+Este proyecto es de uso educativo y académico. Todos los derechos reservados a los autores y fuentes citadas.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+---
 
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Fuente original
+El contenido del decreto fue tomado de la plataforma Infoleg:
+[Fuente Original](https://servicios.infoleg.gob.ar/infolegInternet/anexos/30000-34999/32030/texact.htm)
