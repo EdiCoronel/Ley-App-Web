@@ -126,16 +126,40 @@ function App() {
           <div className="anexos-complementarios">
           Anexos Complementarios
           </div>
-          <li><strong>ANEXO II</strong>: Carga Térmica - Complementa: Capítulo 8 del Título IV</li>
-          <li><strong>ANEXO III</strong>; Contaminación Ambiental - Complementa: Capítulo 9 del Título IV</li>
-          <li><strong>ANEXO IV</strong>: Iluminación y Color - Complementa: Capítulo 12 del Título IV</li>
-          <li><strong>ANEXO V</strong>: Ruidos y Vibraciones - Complementa: Capítulo 13 del Título IV</li>
-          <li><strong>ANEXO VI</strong>: Instalaciones Eléctricas - Complementa: Capítulo 14 del Título V</li>
-          <li><strong>ANEXO VII</strong>: Protección contra Incendios - Complementa: Capítulo 18 del Título V</li>
+          <li>
+            <a href="https://servicios.infoleg.gob.ar/infolegInternet/anexos/30000-34999/32030/dto351-1979-anexo2.htm" target="_blank" rel="noopener noreferrer">
+              <strong>ANEXO II</strong>: Carga Térmica - Complementa: Capítulo 8 del Título IV
+            </a>
+          </li>
+          <li>
+            <a href="https://servicios.infoleg.gob.ar/infolegInternet/anexos/30000-34999/32030/dto351-1979-anexo3.htm" target="_blank" rel="noopener noreferrer">
+              <strong>ANEXO III</strong>: Contaminación Ambiental - Complementa: Capítulo 9 del Título IV
+            </a>
+          </li>
+          <li>
+            <a href="https://servicios.infoleg.gob.ar/infolegInternet/anexos/30000-34999/32030/dto351-1979-anexo4.htm" target="_blank" rel="noopener noreferrer">
+              <strong>ANEXO IV</strong>: Iluminación y Color - Complementa: Capítulo 12 del Título IV
+            </a>
+          </li>
+          <li>
+            <a href="https://servicios.infoleg.gob.ar/infolegInternet/anexos/30000-34999/32030/dto351-1979-anexo5.htm" target="_blank" rel="noopener noreferrer">
+              <strong>ANEXO V</strong>: Ruidos y Vibraciones - Complementa: Capítulo 13 del Título IV
+            </a>
+          </li>
+          <li>
+            <a href="https://servicios.infoleg.gob.ar/infolegInternet/anexos/30000-34999/32030/dto351-1979-anexo6.htm" target="_blank" rel="noopener noreferrer">
+              <strong>ANEXO VI</strong>: Instalaciones Eléctricas - Complementa: Capítulo 14 del Título V
+            </a>
+          </li>
+          <li>
+            <a href="https://servicios.infoleg.gob.ar/infolegInternet/anexos/30000-34999/32030/dto351-1979-anexo7.htm" target="_blank" rel="noopener noreferrer">
+              <strong>ANEXO VII</strong>: Protección contra Incendios - Complementa: Capítulo 18 del Título V
+            </a>
+          </li>
           <li className="derogado-item">
-          <strong>ANEXO VIII - Complementa</strong>: Capítulo 22 del Título VIII 
-          <span className="derogado-text">(Derogado)</span>
-        </li>
+            <strong>ANEXO VIII</strong> - Complementa: Capítulo 22 del Título VIII 
+            <span className="derogado-text">(Derogado)</span>
+          </li>
         </ul>
       </div>
 

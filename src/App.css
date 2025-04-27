@@ -126,6 +126,13 @@ li:hover {
   align-items: center;
 }
 
+a {
+  all: unset; /* Resetea todos los estilos predeterminados */
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+
 .arrow {
   transition: transform 0.3s;
 }
