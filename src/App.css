@@ -203,3 +203,82 @@ p.decreto {
     padding: 1.5rem;
   }
 }
+
+/* Estilos mejorados exclusivamente para ANEXO I con tamaños de fuente más pequeños */
+
+/* Títulos de ANEXO I */
+.titulo h2 {
+  color: #1d3557; /* Azul oscuro elegante */
+  font-size: 1.6rem; /* Tamaño reducido */
+  font-weight: bold;
+  background: linear-gradient(135deg, #a8dadc, #457b9d); /* Fondo degradado */
+  color: #ffffff; /* Texto blanco */
+  padding: 0.8rem; /* Espaciado reducido */
+  border-radius: 12px;
+  margin-bottom: 1rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+  text-align: center; /* Centrado */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.titulo h2:hover {
+  transform: translateY(-3px); /* Efecto flotante */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Sombra más pronunciada */
+}
+
+/* Capítulos de ANEXO I */
+.capitulo {
+  margin-bottom: 1rem; /* Separación entre capítulos */
+  background: #f1f3f5; /* Fondo claro */
+  border: 1px solid #dee2e6; /* Borde sutil */
+  border-radius: 8px; /* Bordes redondeados */
+  transition: background 0.3s ease, box-shadow 0.3s ease; /* Transición */
+}
+
+.capitulo:hover {
+  background: #e9ecef; /* Fondo más claro en hover */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra en hover */
+}
+
+.chapter-title {
+  font-size: 1.2rem; /* Tamaño reducido */
+  font-weight: bold;
+  color: #343a40; /* Gris oscuro */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer; /* Indica interacción */
+}
+
+.chapter-title.derogado {
+  color: #6c757d; /* Gris tenue para capítulos derogados */
+  font-style: italic; /* Texto en cursiva */
+  cursor: not-allowed; /* No interactivo */
+}
+
+.chapter-title:hover {
+  color: #0056b3; /* Azul profesional en hover */
+}
+
+/* Artículos dentro de Capítulos */
+.chapter-content {
+  padding-left: 1rem; /* Sangría para diferenciar */
+  margin-top: 0.5rem;
+  background: #ffffff; /* Fondo blanco */
+  border-left: 4px solid #457b9d; /* Línea decorativa */
+}
+
+.chapter-content li {
+  font-size: 0.9rem; /* Tamaño reducido para artículos */
+  padding: 0.6rem; /* Espaciado reducido */
+  background: #f8f9fa; /* Fondo claro */
+  margin-bottom: 0.5rem;
+  border-radius: 8px; /* Bordes redondeados */
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  margin-top: 0.5rem; /* Separación entre artículos */
+}
+
+.chapter-content li:hover {
+  transform: translateX(5px); /* Efecto de desplazamiento */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+}
