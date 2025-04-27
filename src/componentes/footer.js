@@ -17,7 +17,7 @@ const Footer = () => {
             target="_blank" 
             rel="noopener noreferrer"
             >
-            Fuente Original
+            Fuente Infoleg.gob.ar
             </a>
         </p>
         </footer>
