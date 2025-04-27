@@ -94,7 +94,7 @@ function App() {
                           // Verificar si el artículo tiene un subtítulo
                           if (typeof art === 'object' && art.subtitulo) {
                             return (
-                              <li key={`anexo-art-${i}`}>
+                              <li key={`anexo-art-${i}`} className="subtitulo-static">
                                 <strong>{art.subtitulo}</strong>
                               </li>
                             );
