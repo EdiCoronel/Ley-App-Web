@@ -57,7 +57,7 @@ function App() {
             onClick={() => setShowAnnexI(!showAnnexI)}
             className="anexo-toggle"
           >
-            ANEXO I : Reglamentación de la Ley Nº 19.587, aprobada por Decreto Nº 351/79
+            <strong>ANEXO I</strong>: Reglamentación de la Ley Nº 19.587, aprobada por Decreto Nº 351/79
             <span className={`arrow ${showAnnexI ? 'open' : 'closed'}`}></span>
           </li>
           {showAnnexI && (
@@ -72,6 +72,9 @@ function App() {
                         onClick={() => toggleChapter(`anexo-cap-${index}-${idx}`)}
                       >
                         {cap.nombre}
+                        {cap.derogado && (
+                        <span className="derogado-text"> (Derogado)</span>
+                        )}
                         <span
                           className={`arrow ${
                             expandedChapters[`anexo-cap-${index}-${idx}`]
@@ -123,13 +126,16 @@ function App() {
           <div className="anexos-complementarios">
           Anexos Complementarios
           </div>
-          <li>ANEXO II: Carga Térmica - Complementa: Capítulo 8 del Título IV</li>
-          <li>ANEXO III: Contaminación Ambiental - Complementa: Capítulo 9 del Título IV</li>
-          <li>ANEXO IV: Iluminación y Color - Complementa: Capítulo 12 del Título IV</li>
-          <li>ANEXO V: Ruidos y Vibraciones - Complementa: Capítulo 13 del Título IV</li>
-          <li>ANEXO VI: Instalaciones Eléctricas - Complementa: Capítulo 14 del Título V</li>
-          <li>ANEXO VII: Protección contra Incendios - Complementa: Capítulo 18 del Título V</li>
-          <li>ANEXO VIII - Complementa: Capítulo 22 del Título VIII (Derogado)</li>
+          <li><strong>ANEXO II</strong>: Carga Térmica - Complementa: Capítulo 8 del Título IV</li>
+          <li><strong>ANEXO III</strong>; Contaminación Ambiental - Complementa: Capítulo 9 del Título IV</li>
+          <li><strong>ANEXO IV</strong>: Iluminación y Color - Complementa: Capítulo 12 del Título IV</li>
+          <li><strong>ANEXO V</strong>: Ruidos y Vibraciones - Complementa: Capítulo 13 del Título IV</li>
+          <li><strong>ANEXO VI</strong>: Instalaciones Eléctricas - Complementa: Capítulo 14 del Título V</li>
+          <li><strong>ANEXO VII</strong>: Protección contra Incendios - Complementa: Capítulo 18 del Título V</li>
+          <li className="derogado-item">
+          <strong>ANEXO VIII - Complementa</strong>: Capítulo 22 del Título VIII 
+          <span className="derogado-text">(Derogado)</span>
+        </li>
         </ul>
       </div>
 

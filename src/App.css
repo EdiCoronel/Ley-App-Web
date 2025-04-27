@@ -28,6 +28,12 @@ h2 {
   margin-bottom: 1rem;
   border-bottom: 2px solid #dee2e6; /* Línea inferior elegante */
   padding-bottom: 0.5rem;
+  margin-top: 2rem;
+  padding: 1rem;
+  background-color: #f1f3f5;
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 h2.decreto {
@@ -57,14 +63,39 @@ h3:hover {
   font-size: 1.6rem; /* Tamaño de fuente más grande */
   font-weight: bold; /* Negrita para destacar */
   margin: 1.5rem 0; /* Espaciado superior e inferior */
-  color: #495057; /* Gris oscuro profesional */
-  cursor: default; /* No interactivo */
-  user-select: none; /* Evita que se pueda seleccionar el texto */
+  margin-top: 2rem;
+  padding: 1rem;
+  background-color: #f1f3f5;
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .derogado {
   color: #6c757d; /* Gris tenue para capítulos derogados */
   cursor: not-allowed;
+}
+
+/* Estilo para los elementos derogados */
+.derogado-item {
+  pointer-events: none; /* Desactiva la interacción */
+  color: #6c757d; /* Color gris tenue */
+  background: #f8f9fa; /* Fondo claro */
+  border: 1px solid #dee2e6; /* Borde sutil */
+  border-radius: 8px; /* Bordes redondeados */
+}
+
+.derogado-item:hover {
+  background: #f8f9fa; /* Sin cambios en hover */
+  box-shadow: none; /* Sin sombra en hover */
+  transform: none; /* Sin efecto flotante */
+}
+
+/* Estilo para la palabra "Derogado" */
+.derogado-text {
+  color: #ff0000; /* Rojo para destacar "Derogado" */
+  font-weight: bold; /* Negritas */
+  margin-left: 0.5rem; /* Espaciado a la izquierda */
 }
 
 ul {
@@ -91,7 +122,7 @@ li:hover {
 
 .anexos li {
   display: flex;
-  justify-content: space-between;
+  justify-content: left;
   align-items: center;
 }
 
@@ -272,7 +303,7 @@ p.decreto {
   font-weight: bold;
   color: #343a40; /* Gris oscuro */
   display: flex;
-  justify-content: space-between;
+  justify-content: left; /* Alineación a la izquierda */
   align-items: center;
   cursor: pointer; /* Indica interacción */
 }
@@ -281,6 +312,10 @@ p.decreto {
   color: #6c757d; /* Gris tenue para capítulos derogados */
   font-style: italic; /* Texto en cursiva */
   cursor: not-allowed; /* No interactivo */
+}
+
+.chapter-title.derogado:hover {
+  color: #6c757d; /* Sin cambio en el color al hacer hover */
 }
 
 .chapter-title:hover {
