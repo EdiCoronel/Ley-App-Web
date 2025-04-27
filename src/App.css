@@ -116,11 +116,11 @@ li:hover {
 }
 
 .chapter-content.visible {
-  max-height: 1000px; /* Ajustar según contenido */
+  max-height: 2000px; /* Ajustar según contenido */
   transition: max-height 0.3s ease-in;
 }
 
-/* Modal */
+/* Estilos para el modal */
 .modal {
   position: fixed;
   top: 0;
@@ -131,7 +131,7 @@ li:hover {
   display: flex;
   justify-content: center;
   align-items: center;
-  animation: fadeIn 0.3s ease-in-out;
+  z-index: 1000; /* Asegura que esté encima de otros elementos */
 }
 
 .modal-content {
@@ -139,11 +139,38 @@ li:hover {
   padding: 2rem;
   border-radius: 16px;
   max-width: 600px;
+  max-height: 80%; /* Limita la altura del modal */
   width: 90%;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada */
+  overflow-y: auto; /* Aparece automáticamente cuando sea necesario */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Sombra */
   position: relative;
 }
 
+/* Estilo para ocultar el scrollbar por defecto */
+.modal-content::-webkit-scrollbar {
+  width: 0; /* Oculta el scrollbar */
+}
+
+.modal-content {
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+}
+
+/* Estilo para mostrar el scrollbar cuando se desplaza */
+.modal-content:hover::-webkit-scrollbar {
+  width: 8px; /* Muestra el scrollbar al hacer hover */
+}
+
+.modal-content:hover::-webkit-scrollbar-thumb {
+  background: #cccccc; /* Color del scrollbar */
+  border-radius: 4px; /* Bordes redondeados del scrollbar */
+}
+
+.modal-content:hover::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Fondo del track */
+}
+
+/* Botón de cierre */
 .modal-content .close-btn {
   position: absolute;
   top: 10px;
