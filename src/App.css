@@ -353,9 +353,7 @@ p.decreto {
 }
 
 .subtitulo-static {
-  font-size: 1.3em;  /* un poco más grande */
+  font-size: 1.5em;  /* un poco más grande */
   font-weight: bold;
-  text-align: center;
   pointer-events: none; /* sin interacción */
-  margin: 10px 0;
 }
