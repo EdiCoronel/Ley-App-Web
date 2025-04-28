@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './App.css';
 import Footer from './componentes/footer'; // Importar el componente Footer
 
+
 function App() {
   const [lawData, setLawData] = useState(null);
   const [modalContent, setModalContent] = useState(null);
@@ -12,7 +13,7 @@ function App() {
   // URLs de los servidores
   const servers = [
     'https://app-web-v2.vercel.app/api/ley',
-    'https://web-app-qr3w.onrender.com/api/ley' // URL del servidor de respaldo
+    'https://backup-server.vercel.app/api/ley' // URL del servidor de respaldo
   ];
 
   // Función para intentar cargar datos desde múltiples servidores
@@ -155,6 +156,30 @@ function App() {
             <a href="https://servicios.infoleg.gob.ar/infolegInternet/anexos/30000-34999/32030/dto351-1979-anexo3.htm" target="_blank" rel="noopener noreferrer">
               <strong>ANEXO III</strong>: Contaminación Ambiental - Complementa: Capítulo 9 del Título IV
             </a>
+          </li>
+          <li>
+            <a href="https://servicios.infoleg.gob.ar/infolegInternet/anexos/30000-34999/32030/dto351-1979-anexo4.htm" target="_blank" rel="noopener noreferrer">
+              <strong>ANEXO IV</strong>: Iluminación y Color - Complementa: Capítulo 12 del Título IV
+            </a>
+          </li>
+          <li>
+            <a href="https://servicios.infoleg.gob.ar/infolegInternet/anexos/30000-34999/32030/dto351-1979-anexo5.htm" target="_blank" rel="noopener noreferrer">
+              <strong>ANEXO V</strong>: Ruidos y Vibraciones - Complementa: Capítulo 13 del Título IV
+            </a>
+          </li>
+          <li>
+            <a href="https://servicios.infoleg.gob.ar/infolegInternet/anexos/30000-34999/32030/dto351-1979-anexo6.htm" target="_blank" rel="noopener noreferrer">
+              <strong>ANEXO VI</strong>: Instalaciones Eléctricas - Complementa: Capítulo 14 del Título V
+            </a>
+          </li>
+          <li>
+            <a href="https://servicios.infoleg.gob.ar/infolegInternet/anexos/30000-34999/32030/dto351-1979-anexo7.htm" target="_blank" rel="noopener noreferrer">
+              <strong>ANEXO VII</strong>: Protección contra Incendios - Complementa: Capítulo 18 del Título V
+            </a>
+          </li>
+          <li className="derogado-item">
+            <strong>ANEXO VIII</strong> - Complementa: Capítulo 22 del Título VIII 
+            <span className="derogado-text">(Derogado)</span>
           </li>
         </ul>
       </div>
