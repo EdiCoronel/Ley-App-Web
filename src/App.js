@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import './App.css';
 import Footer from './componentes/footer'; // Importar el componente Footer
 
-
 function App() {
   const [lawData, setLawData] = useState(null);
   const [modalContent, setModalContent] = useState(null);
@@ -10,12 +9,31 @@ function App() {
   const [showAnnexI, setShowAnnexI] = useState(false); // Estado para controlar el despliegue de ANEXO I
   const [expandedChapters, setExpandedChapters] = useState({}); // Estado para capítulos desplegados
 
+  // URLs de los servidores
+  const servers = [
+    'https://app-web-v2.vercel.app/api/ley',
+    'https://web-app-qr3w.onrender.com/api/ley' // URL del servidor de respaldo
+  ];
+
+  // Función para intentar cargar datos desde múltiples servidores
+  const fetchData = async () => {
+    for (let url of servers) {
+      try {
+        const response = await fetch(url);
+        if (!response.ok) throw new Error(`Error en el servidor: ${url}`);
+        const data = await response.json();
+        setLawData(data);
+        return; // Si los datos se cargan con éxito, salir del bucle
+      } catch (error) {
+        console.error(`Error al intentar cargar desde ${url}:`, error);
+      }
+    }
+    console.error('Todos los servidores fallaron');
+  };
+
   // Cargar los datos de la ley desde el backend
   useEffect(() => {
-    fetch('https://web-app-qr3w.onrender.com/api/ley')
-      .then((response) => response.json())
-      .then((data) => setLawData(data))
-      .catch((error) => console.error('Error al cargar los datos:', error));
+    fetchData();
   }, []);
 
   // Manejar la apertura del modal para mostrar contenido
@@ -137,30 +155,6 @@ function App() {
             <a href="https://servicios.infoleg.gob.ar/infolegInternet/anexos/30000-34999/32030/dto351-1979-anexo3.htm" target="_blank" rel="noopener noreferrer">
               <strong>ANEXO III</strong>: Contaminación Ambiental - Complementa: Capítulo 9 del Título IV
             </a>
-          </li>
-          <li>
-            <a href="https://servicios.infoleg.gob.ar/infolegInternet/anexos/30000-34999/32030/dto351-1979-anexo4.htm" target="_blank" rel="noopener noreferrer">
-              <strong>ANEXO IV</strong>: Iluminación y Color - Complementa: Capítulo 12 del Título IV
-            </a>
-          </li>
-          <li>
-            <a href="https://servicios.infoleg.gob.ar/infolegInternet/anexos/30000-34999/32030/dto351-1979-anexo5.htm" target="_blank" rel="noopener noreferrer">
-              <strong>ANEXO V</strong>: Ruidos y Vibraciones - Complementa: Capítulo 13 del Título IV
-            </a>
-          </li>
-          <li>
-            <a href="https://servicios.infoleg.gob.ar/infolegInternet/anexos/30000-34999/32030/dto351-1979-anexo6.htm" target="_blank" rel="noopener noreferrer">
-              <strong>ANEXO VI</strong>: Instalaciones Eléctricas - Complementa: Capítulo 14 del Título V
-            </a>
-          </li>
-          <li>
-            <a href="https://servicios.infoleg.gob.ar/infolegInternet/anexos/30000-34999/32030/dto351-1979-anexo7.htm" target="_blank" rel="noopener noreferrer">
-              <strong>ANEXO VII</strong>: Protección contra Incendios - Complementa: Capítulo 18 del Título V
-            </a>
-          </li>
-          <li className="derogado-item">
-            <strong>ANEXO VIII</strong> - Complementa: Capítulo 22 del Título VIII 
-            <span className="derogado-text">(Derogado)</span>
           </li>
         </ul>
       </div>
