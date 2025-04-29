@@ -2,6 +2,12 @@ import React, { useEffect, useState } from 'react';
 import './App.css';
 import Footer from './componentes/footer'; // Importar el componente Footer
 
+const normalizeText = (text) => {
+  return text
+    .normalize('NFD') // Descompone letras con acentos
+    .replace(/[\u0300-\u036f]/g, '') // Elimina los signos de acento
+    .toLowerCase(); // Todo en minúscula
+};
 
 function App() {
   const [lawData, setLawData] = useState(null);
@@ -61,61 +67,95 @@ function App() {
   };
 
    // Función para manejar la búsqueda
+    const handleSearch = (event) => {
+      const query = event.target.value;
+      setSearchQuery(query); // Solo actualiza el texto. Nada más.
+      // Si el input queda vacío, limpiar los resultados
+      if (query.trim() === '') {
+        setSearchResults([]);
+        setHasSearched(false); // Reiniciar el estado de búsqueda
+      }
+      else {
+        // Cada vez que el usuario empieza a escribir una nueva palabra, limpiamos los resultados anteriores
+        setSearchResults([]);
+        setHasSearched(false);
+      }
+    };
+
+  const [lastQuery, setLastQuery] = useState('');
+
+  const [hasSearched, setHasSearched] = useState(false); // Estado para controlar si se ha realizado una búsqueda
+
   const triggerSearch = () => {
-    handleSearch({ target: { value: searchQuery } });
-  };
-
-  const handleSearch = (event) => {
-    const query = event.target.value.toLowerCase();
-    setSearchQuery(query);
-
-    if (query && lawData) {
-      const results = [];
-
-      // Buscar coincidencias dentro de títulos, capítulos y artículos
+    if (!searchQuery.trim()) {
+      setSearchResults([]);
+      setHasSearched(false);
+      setLastQuery('');
+      return;
+    }
+  
+    const query = normalizeText(searchQuery.trim()); // Normalizar la búsqueda
+    const keywords = query.split(/\s+/); // Separar por espacios en un array de palabras
+  
+    const results = [];
+  
+    if (lawData) {
       lawData.titulos.forEach((titulo, tituloIndex) => {
-        if (titulo.nombre.toLowerCase().includes(query)) {
+        const tituloTexto = normalizeText(titulo.nombre);
+  
+        if (keywords.every(word => tituloTexto.includes(word))) {
           results.push({
             type: 'Título',
             content: titulo.nombre,
-            location: `Título ${tituloIndex + 1}`, // Mostrar el número real del título
+            location: `Título ${tituloIndex + 1}`,
           });
         }
-
-        // Extraer el número real del capítulo desde el nombre
+  
         titulo.capitulos.forEach((capitulo) => {
           const matchCapitulo = capitulo.nombre.match(/Capítulo\s+(\d+)/i);
           const numeroCapitulo = matchCapitulo ? matchCapitulo[1] : 'Sin número';
-        
-          if (capitulo.nombre.toLowerCase().includes(query)) {
+  
+          const capituloTexto = normalizeText(capitulo.nombre);
+  
+          if (keywords.every(word => capituloTexto.includes(word))) {
             results.push({
               type: 'Capítulo',
               content: capitulo.nombre,
               location: `Título ${tituloIndex + 1} > Capítulo ${numeroCapitulo}`,
             });
           }
-        
+  
           capitulo.articulos?.forEach((articulo) => {
-            if (
-              (articulo.numero && articulo.numero.toString().includes(query)) ||
-              (articulo.contenido && articulo.contenido.toLowerCase().includes(query))
-            ) {
-              results.push({
-                type: 'Artículo',
-                content: `Artículo ${articulo.numero}`,
-                location: `Título ${tituloIndex + 1} > Capítulo ${numeroCapitulo} > Artículo ${articulo.numero}`,
-                fullContent: articulo.contenido,
-              });
+            if (typeof articulo === 'object') {
+              const contenidoLimpio = articulo.contenido ? normalizeText(articulo.contenido) : '';
+  
+              // Para números de artículo, comparación exacta
+              if (
+                (articulo.numero && articulo.numero.toString() === query) || 
+                (keywords.every(word => contenidoLimpio.includes(word)))
+              ) {
+                results.push({
+                  type: 'Artículo',
+                  content: `Artículo ${articulo.numero}`,
+                  location: `Título ${tituloIndex + 1} > Capítulo ${numeroCapitulo} > Artículo ${articulo.numero}`,
+                  fullContent: articulo.contenido,
+                });
+              }
             }
           });
         });
       });
-
-      setSearchResults(results);
-    } else {
-      setSearchResults([]);
-    }
-  };
+  
+    setSearchResults(results);
+    setHasSearched(true);
+    setLastQuery(searchQuery);
+    setSearchQuery(''); // ← AQUÍ vaciamos el input después de buscar
+  } else {
+    setSearchResults([]);
+    setHasSearched(false);
+    setLastQuery('');
+  }
+};
 
   if (!lawData) return <p>Cargando datos...</p>;
 
@@ -152,21 +192,23 @@ function App() {
         </button>
       </div>
 
-       {/* Mostrar resultados de búsqueda */}
-      {searchResults.length > 0 ? (
-        <div className="search-results">
-          <h2>Resultados de Búsqueda:</h2>
-          <ul>
-            {searchResults.map((result, index) => (
-              <li key={index} onClick={() => result.type === 'Artículo' && openModal(result.fullContent)}>
-                <strong>{result.type}:</strong> {result.content} <br />
-                <em>{result.location}</em>
-              </li>
-            ))}
-          </ul>
-        </div>
-      ) : searchQuery ? (
-        <p>No se encontraron resultados para "{searchQuery}".</p>
+      {/* Mostrar resultados de búsqueda */}
+      {hasSearched ? (
+        searchResults.length > 0 ? (
+          <div className="search-results">
+            <h2>Resultados de Búsqueda:</h2>
+            <ul>
+              {searchResults.map((result, index) => (
+                <li key={index} onClick={() => result.type === 'Artículo' && openModal(result.fullContent)}>
+                  <strong>{result.type}:</strong> {result.content} <br />
+                  <em>{result.location}</em>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ) : (
+          <p>No se encontraron resultados para "{lastQuery}".</p>
+        )
       ) : null}
 
       {/* Sección de Anexos */}
