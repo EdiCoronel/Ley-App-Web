@@ -125,31 +125,32 @@ function App() {
       <h1>{lawData.descripcion}</h1>
 
       {/* Barra de búsqueda */}
-      <div className="search-bar">
-  <input
-    type="text"
-    placeholder="Buscar por palabra, artículo o título..."
-    value={searchQuery}
-    onChange={handleSearch}
-    onKeyDown={(e) => e.key === 'Enter' && triggerSearch()}
-  />
-  <button className="search-button" onClick={triggerSearch} aria-label="Buscar">
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    className="search-icon"
-    fill="none"
-    viewBox="0 0 24 24"
-    stroke="currentColor"
-  >
-    <path
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      strokeWidth={2}
-      d="M11 4a7 7 0 015.292 11.708l4.646 4.646a1 1 0 01-1.414 1.414l-4.646-4.646A7 7 0 1111 4z"
-    />
-  </svg>
-</button>
-</div>
+      <div className="search-container">
+        <input
+          type="text"
+          placeholder="Buscar por palabra, artículo o título..."
+          value={searchQuery}
+          onChange={handleSearch}
+          onKeyDown={(e) => e.key === 'Enter' && triggerSearch()}
+          className="search-input"
+        />
+        <button className="search-button" onClick={triggerSearch} aria-label="Buscar">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="search-icon"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M11 4a7 7 0 015.292 11.708l4.646 4.646a1 1 0 01-1.414 1.414l-4.646-4.646A7 7 0 1111 4z"
+            />
+          </svg>
+        </button>
+      </div>
 
        {/* Mostrar resultados de búsqueda */}
       {searchResults.length > 0 ? (
