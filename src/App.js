@@ -9,6 +9,9 @@ function App() {
   const [showModal, setShowModal] = useState(false);
   const [showAnnexI, setShowAnnexI] = useState(false); // Estado para controlar el despliegue de ANEXO I
   const [expandedChapters, setExpandedChapters] = useState({}); // Estado para capítulos desplegados
+  const [searchQuery, setSearchQuery] = useState(''); // Estado para la búsqueda
+  const [searchResults, setSearchResults] = useState([]); // Resultados de búsqueda
+
 
   // URLs de los servidores
   const servers = [
@@ -57,12 +60,113 @@ function App() {
     }));
   };
 
+   // Función para manejar la búsqueda
+  const triggerSearch = () => {
+    handleSearch({ target: { value: searchQuery } });
+  };
+
+  const handleSearch = (event) => {
+    const query = event.target.value.toLowerCase();
+    setSearchQuery(query);
+
+    if (query && lawData) {
+      const results = [];
+
+      // Buscar coincidencias dentro de títulos, capítulos y artículos
+      lawData.titulos.forEach((titulo, tituloIndex) => {
+        if (titulo.nombre.toLowerCase().includes(query)) {
+          results.push({
+            type: 'Título',
+            content: titulo.nombre,
+            location: `Título ${tituloIndex + 1}`, // Mostrar el número real del título
+          });
+        }
+
+        // Extraer el número real del capítulo desde el nombre
+        titulo.capitulos.forEach((capitulo) => {
+          const matchCapitulo = capitulo.nombre.match(/Capítulo\s+(\d+)/i);
+          const numeroCapitulo = matchCapitulo ? matchCapitulo[1] : 'Sin número';
+        
+          if (capitulo.nombre.toLowerCase().includes(query)) {
+            results.push({
+              type: 'Capítulo',
+              content: capitulo.nombre,
+              location: `Título ${tituloIndex + 1} > Capítulo ${numeroCapitulo}`,
+            });
+          }
+        
+          capitulo.articulos?.forEach((articulo) => {
+            if (
+              (articulo.numero && articulo.numero.toString().includes(query)) ||
+              (articulo.contenido && articulo.contenido.toLowerCase().includes(query))
+            ) {
+              results.push({
+                type: 'Artículo',
+                content: `Artículo ${articulo.numero}`,
+                location: `Título ${tituloIndex + 1} > Capítulo ${numeroCapitulo} > Artículo ${articulo.numero}`,
+                fullContent: articulo.contenido,
+              });
+            }
+          });
+        });
+      });
+
+      setSearchResults(results);
+    } else {
+      setSearchResults([]);
+    }
+  };
+
   if (!lawData) return <p>Cargando datos...</p>;
 
   return (
     <div className="container">
       {/* Descripción principal */}
       <h1>{lawData.descripcion}</h1>
+
+      {/* Barra de búsqueda */}
+      <div className="search-bar">
+  <input
+    type="text"
+    placeholder="Buscar por palabra, artículo o título..."
+    value={searchQuery}
+    onChange={handleSearch}
+    onKeyDown={(e) => e.key === 'Enter' && triggerSearch()}
+  />
+  <button className="search-button" onClick={triggerSearch} aria-label="Buscar">
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    className="search-icon"
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke="currentColor"
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2}
+      d="M11 4a7 7 0 015.292 11.708l4.646 4.646a1 1 0 01-1.414 1.414l-4.646-4.646A7 7 0 1111 4z"
+    />
+  </svg>
+</button>
+</div>
+
+       {/* Mostrar resultados de búsqueda */}
+      {searchResults.length > 0 ? (
+        <div className="search-results">
+          <h2>Resultados de Búsqueda:</h2>
+          <ul>
+            {searchResults.map((result, index) => (
+              <li key={index} onClick={() => result.type === 'Artículo' && openModal(result.fullContent)}>
+                <strong>{result.type}:</strong> {result.content} <br />
+                <em>{result.location}</em>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ) : searchQuery ? (
+        <p>No se encontraron resultados para "{searchQuery}".</p>
+      ) : null}
 
       {/* Sección de Anexos */}
       <div className="anexos">
