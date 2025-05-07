@@ -16,8 +16,20 @@ const Footer = () => {
             href="https://servicios.infoleg.gob.ar/infolegInternet/anexos/30000-34999/32030/texact.htm" 
             target="_blank" 
             rel="noopener noreferrer"
+            style={{ fontWeight: 'bold' }}
             >
-            Fuente Infoleg.gob.ar
+            Infoleg.gob.ar
+            </a>
+        </p>
+        <p>
+            Los contenidos de infoleg.gob.ar están licenciados bajo{' '}
+            <a 
+            href="https://creativecommons.org/licenses/by/2.5/ar/" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            style={{ fontWeight: 'bold' }}
+            >
+            Creative Commons Atribución 2.5 Argentina
             </a>
         </p>
         </footer>
